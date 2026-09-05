@@ -1,0 +1,520 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+:root {
+  --background: #112924;
+  --foreground: #f6f6e9;
+  --primary: #d5ef7a;
+  --primary-foreground: #132820;
+  --border: #ffffff28;
+  --ring: #d5ef7a;
+  --radius: 0.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #def18e;
+  outline-offset: 5px;
+}
+.game {
+  height: 100svh;
+  min-height: 650px;
+  position: relative;
+  overflow: hidden;
+  background: #193b33;
+}
+.world {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+.world canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.game:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #07181399,
+    transparent 37%,
+    transparent 55%,
+    #071b17e8
+  );
+}
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 92px;
+  margin: 0 42px;
+  border-bottom: 1px solid #ffffff26;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+.brand {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  gap: 10px;
+}
+.brand-symbol {
+  background: #d5ef7a;
+  color: #163d30;
+  border-radius: 8px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 31px;
+  line-height: 30px;
+}
+.edition {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin-left: 15px;
+  color: #d6e4d8;
+}
+.top-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+}
+.top-actions button {
+  color: white;
+  background: #ffffff10;
+  border: 1px solid #ffffff2b;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+}
+.live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #d5ef7a;
+  border-radius: 50%;
+}
+.level-info {
+  position: absolute;
+  z-index: 2;
+  top: 133px;
+  left: 43px;
+  pointer-events: none;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #d7e6d9;
+}
+.eyebrow span {
+  color: #d5ef7a;
+}
+h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(36px, 4vw, 61px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  margin: 22px 0 16px;
+}
+.level-info p {
+  font-size: 13px;
+  color: #d2dcd5;
+}
+.location {
+  margin-top: 25px;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.scorecard {
+  position: absolute;
+  right: 42px;
+  top: 133px;
+  width: 205px;
+  padding: 22px;
+  background: #132b25ac;
+  border: 1px solid #ffffff25;
+  border-radius: 3px;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.scorecard .eyebrow {
+  font-size: 9px;
+}
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 7px;
+}
+.score strong {
+  font-size: 69px;
+  letter-spacing: -4px;
+  font-weight: 400;
+}
+.score > span {
+  font-size: 11px;
+  color: #c3d2c7;
+}
+.score-track {
+  height: 3px;
+  background: #ffffff24;
+  margin: 12px 0;
+}
+.score-track i {
+  display: block;
+  height: 100%;
+  background: #d5ef7a;
+  transition: width 0.4s;
+}
+.goal {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: #c7d3c9;
+}
+.goal b {
+  color: #e2eddf;
+  font-weight: 400;
+}
+.stats {
+  display: flex;
+  gap: 35px;
+  margin-top: 24px;
+  padding-top: 19px;
+  border-top: 1px solid #ffffff1c;
+}
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stats b {
+  font-size: 20px;
+  font-weight: 400;
+}
+.stats span {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #c6d6c8;
+}
+.center-mark {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  font-size: 22px;
+  color: #e9f4cf65;
+  pointer-events: none;
+}
+.feedback {
+  position: absolute;
+  bottom: 244px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #e6f5cc;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0 2px 12px #000;
+}
+.throw-panel {
+  position: absolute;
+  width: 350px;
+  bottom: 102px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+.throw-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+}
+.throw-label span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.throw-label b {
+  color: #d5ef7a;
+  font-weight: 500;
+}
+.power {
+  height: 5px;
+  background: #ffffff30;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.power i {
+  display: block;
+  height: 100%;
+  background: #d5ef7a;
+}
+.power > span {
+  position: absolute;
+  left: 65%;
+  top: 0;
+  background: white;
+  width: 2px;
+  height: 5px;
+}
+.throw-panel p {
+  text-align: center;
+  font-size: 11px;
+  color: #c2d2c4;
+  margin: 12px 0;
+}
+.keyboard {
+  text-align: center;
+  font-size: 9px;
+  color: #aabbae;
+}
+kbd {
+  display: inline-block;
+  border: 1px solid #ffffff30;
+  border-radius: 3px;
+  padding: 2px 4px;
+  margin: 0 2px;
+  font-size: 9px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 42px;
+  right: 42px;
+  height: 78px;
+  border-top: 1px solid #ffffff23;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  z-index: 2;
+}
+.chapter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.5;
+}
+.chapter.active {
+  opacity: 1;
+}
+.chapter > span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ffffff50;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.chapter.active > span {
+  border-color: #d5ef7a;
+  color: #d5ef7a;
+}
+.chapter div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.chapter b {
+  font-size: 11px;
+  font-weight: 400;
+}
+.chapter small {
+  font-size: 8px;
+  letter-spacing: 1.3px;
+}
+.chapter.active small {
+  color: #d5ef7a;
+}
+.chapter-line {
+  width: 50px;
+  height: 1px;
+  background: #ffffff30;
+}
+.physics-note {
+  margin-left: auto;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #b9cabc;
+}
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #081e17b8;
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+}
+.modal {
+  position: absolute;
+  z-index: 6;
+  background: #163b30;
+  border: 1px solid #aec99266;
+  border-radius: 8px;
+  padding: 46px;
+  text-align: center;
+  max-width: 90vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+}
+.modal h2 {
+  font:
+    54px/1 Georgia,
+    serif;
+  margin: 22px 0;
+}
+.modal p {
+  font-size: 14px;
+  color: #cbd9cd;
+  line-height: 1.8;
+}
+.modal button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  padding: 16px;
+  background: #d5ef7a;
+  color: #15332a;
+  border: 0;
+  border-radius: 3px;
+  margin-top: 28px;
+}
+.beach .scorecard {
+  background: #24362ca8;
+}
+@media (max-width: 700px) {
+  header {
+    margin: 0 20px;
+    height: 72px;
+  }
+  .edition,
+  .top-actions > .live-dot,
+  .physics-note {
+    display: none;
+  }
+  .top-actions {
+    font-size: 0;
+    gap: 8px;
+  }
+  .brand {
+    font-size: 20px;
+  }
+  .level-info {
+    left: 20px;
+    top: 99px;
+  }
+  h1 {
+    font-size: 35px;
+    margin: 17px 0 10px;
+  }
+  .level-info p {
+    font-size: 11px;
+    max-width: 190px;
+  }
+  .location {
+    font-size: 8px;
+    margin-top: 15px;
+  }
+  .scorecard {
+    right: 20px;
+    top: 100px;
+    width: 125px;
+    padding: 14px;
+  }
+  .score strong {
+    font-size: 45px;
+  }
+  .scorecard .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .goal {
+    font-size: 8px;
+    flex-wrap: wrap;
+  }
+  .stats {
+    gap: 14px;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+  .stats span {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+  .stats b {
+    font-size: 16px;
+  }
+  .throw-panel {
+    width: 290px;
+  }
+  .feedback {
+    font-size: 11px;
+  }
+  footer {
+    left: 20px;
+    right: 20px;
+    gap: 14px;
+  }
+  .chapter-line {
+    width: 18px;
+  }
+  .chapter b {
+    font-size: 10px;
+  }
+  .chapter small {
+    font-size: 7px;
+  }
+  .chapter {
+    gap: 7px;
+  }
+}
